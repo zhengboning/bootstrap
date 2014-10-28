@@ -1551,3 +1551,23 @@ h1[id] {
   -webkit-box-shadow: 0 0 8px rgba(82,168,236,.6);
           box-shadow: 0 0 8px rgba(82,168,236,.6);
 }
+
+
+.anchor {
+  font-size: .8em;
+  color: #563d7c;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease-in-out .1s;
+       -o-transition: opacity .2s ease-in-out .1s;
+          transition: opacity .2s ease-in-out .1s;
+}
+
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+  color: #563d7c;
+  opacity: 1;
+}
