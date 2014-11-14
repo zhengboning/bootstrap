@@ -307,6 +307,26 @@ module.exports = function (grunt) {
       }
     },
 
+    htmlmin: {
+      dist: {
+        options: {
+          collapseWhitespace: true,
+          conservativeCollapse: true,
+          minifyCSS: true,
+          minifyJS: true,
+          removeAttributeQuotes: true,
+          removeComments: true
+        },
+        expand: true,
+        cwd: '_gh_pages',
+        dest: '_gh_pages',
+        src: [
+          '**/*.html',
+          '!examples/**/*.html'
+        ]
+      }
+    },
+
     jade: {
       options: {
         pretty: true,
@@ -391,7 +411,7 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   // Docs HTML validation task
-  grunt.registerTask('validate-html', ['jekyll:docs', 'validation']);
+  grunt.registerTask('validate-html', ['jekyll:docs', 'htmlmin', 'validation']);
 
   var runSubset = function (subset) {
     return !process.env.TWBS_TEST || process.env.TWBS_TEST === subset;
@@ -465,7 +485,7 @@ module.exports = function (grunt) {
   grunt.registerTask('lint-docs-js', ['jshint:assets', 'jscs:assets']);
   grunt.registerTask('docs', ['docs-css', 'lint-docs-css', 'docs-js', 'lint-docs-js', 'clean:docs', 'copy:docs', 'build-customizer']);
 
-  grunt.registerTask('docs-github', ['jekyll:github']);
+  grunt.registerTask('docs-github', ['jekyll:github', 'htmlmin']);
 
   // Task for updating the cached npm packages used by the Travis build (which are controlled by test-infra/npm-shrinkwrap.json).
   // This task should be run and the updated file should be committed whenever Bootstrap's dependencies change.
