@@ -80,11 +80,10 @@ $(function () {
         + '</div>'
     $(templateHTML).appendTo(document.body)
 
-    $('#affixTopTarget').bootstrapAffix({
-      offset: { top: 120, bottom: 0 }
-    })
-
     $('#affixTopTarget')
+      .bootstrapAffix({
+        offset: { top: 120, bottom: 0 }
+      })
       .on('affixed-top.bs.affix', function () {
         ok($('#affixTopTarget').hasClass('affix-top'), 'affix-top class applied')
         start()
@@ -95,7 +94,7 @@ $(function () {
 
       setTimeout(function () {
         window.scroll(0, 119)
-      }, 0)
-    }, 0)
+      }, 250)
+    }, 250)
   })
 })
